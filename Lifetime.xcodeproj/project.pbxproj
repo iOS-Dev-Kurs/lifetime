@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		870312411CD4EDBC00A48B90 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8703123F1CD4EDBC00A48B90 /* LaunchScreen.storyboard */; };
 		870312421CD4EDBC00A48B90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 870312401CD4EDBC00A48B90 /* Main.storyboard */; };
+		870312471CD4EEC900A48B90 /* LifetimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870312461CD4EEC900A48B90 /* LifetimeCell.swift */; };
 		871045011CD4ED800091710A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871044F21CD4ED800091710A /* AppDelegate.swift */; };
 		871045021CD4ED800091710A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 871044F31CD4ED800091710A /* Assets.xcassets */; };
 		871045071CD4ED800091710A /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871044FD1CD4ED800091710A /* ContactDetailViewController.swift */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		8703123F1CD4EDBC00A48B90 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Lifetime/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		870312401CD4EDBC00A48B90 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Lifetime/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		870312461CD4EEC900A48B90 /* LifetimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LifetimeCell.swift; path = Lifetime/LifetimeCell.swift; sourceTree = SOURCE_ROOT; };
 		871044D91CD3C9860091710A /* Lifetime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lifetime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		871044F21CD4ED800091710A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Lifetime/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		871044F31CD4ED800091710A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Lifetime/Assets.xcassets; sourceTree = SOURCE_ROOT; };
@@ -69,6 +71,7 @@
 		870312481CD4EECD00A48B90 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				870312461CD4EEC900A48B90 /* LifetimeCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				8710450A1CD4ED800091710A /* Lifetime.swift in Sources */,
 				871045071CD4ED800091710A /* ContactDetailViewController.swift in Sources */,
 				871045011CD4ED800091710A /* AppDelegate.swift in Sources */,
+				870312471CD4EEC900A48B90 /* LifetimeCell.swift in Sources */,
 				871045081CD4ED800091710A /* ContactListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

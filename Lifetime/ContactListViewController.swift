@@ -65,11 +65,28 @@ class ContactListViewController: UITableViewController {
 
     
     // MARK: User Interaction
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        switch identifier {
+            
+        case "showContactDetail":
+            guard let indexPath = self.tableView.indexPathForSelectedRow else { return false }
+            let contact = contacts[indexPath.row]
+            return contact.lifetime != nil
+            
+        default:
+            return true
+        }
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier! {
-
-        // TODO: prepare segue.destinationViewController for each identifier
+            
+        case "showContactDetail":
+            guard let indexPath = self.tableView.indexPathForSelectedRow else { break }
+            let contact = contacts[indexPath.row]
+            let contactDetailViewController = segue.destination as! ContactDetailViewController
+            contactDetailViewController.contact = contact
             
         default:
             break
@@ -81,7 +98,31 @@ class ContactListViewController: UITableViewController {
 
 // MARK: - Table View Datasource
 
-// TODO: implement UITableViewDatasource protocol
+extension ContactListViewController {
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return contacts.count
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LifetimeCell", for: indexPath) as! LifetimeCell
+        let contact = contacts[indexPath.row]
+        cell.configure(for: contact)
+        if let _ = contact.lifetime {
+            cell.selectionStyle = .default
+            cell.accessoryType = .disclosureIndicator
+        } else {
+            cell.selectionStyle = .none
+            cell.accessoryType = .none
+        }
+        return cell
+    }
+
+}
 
 
 // MARK: - Search Results Updating
