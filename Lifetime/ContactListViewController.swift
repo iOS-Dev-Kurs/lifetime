@@ -68,12 +68,30 @@ class ContactListViewController: UITableViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier! {
-
-        // TODO: prepare segue.destinationViewController for each identifier
+            
+        case "showContactDetail": guard let indexPath = self.tableView.indexPathForSelectedRow else {break}
+        let contact = contacts[indexPath.row]
+        let contactDetailViewController = segue.destinationViewController as! ContactDetailViewController
+        contactDetailViewController.contact = contact
             
         default:
             break
         }
+    }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        switch identifier{
+            case "showContactDetail": guard let indexPath = self.tableView.indexPathForSelectedRow else {break}
+            let contact = contacts[indexPath.row]
+            if contact.lifetime != nil {
+                return true
+            } else{
+                return false
+            }
+        default:
+            break
+        }
+        return true
     }
     
 }

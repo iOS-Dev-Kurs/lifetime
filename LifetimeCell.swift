@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Contacts
 
-class LifetimeCell: UITableView{
+class LifetimeCell: UITableViewCell{
     
     func configureForContact(contact: CNContact){
         textLabel?.text = CNContactFormatter.stringFromContact(contact, style: .FullName)
@@ -17,7 +17,7 @@ class LifetimeCell: UITableView{
             let lifetimeFormatter = NSDateComponentsFormatter()
             lifetimeFormatter.allowedUnits = .Day
             lifetimeFormatter.unitsStyle = .Full
-            detailTextLabel?.text = lifetimeFormatter.stringFromTimeInterval(lifetimeFormatter)
+            detailTextLabel?.text = lifetimeFormatter.stringFromTimeInterval(lifetime)
         } else {
             detailTextLabel?.text = nil
         }
