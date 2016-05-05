@@ -82,14 +82,6 @@ class ContactListViewController: UITableViewController {
         }
     }
     
-    var cellTimers: [NSTimer] = []
-    //override func viewDidDisappear(animated: Bool) {
-    //    super.viewDidDisappear(animated)
-    //    for timer in cellTimers {
-    //        timer.invalidate()
-    //    }
-    //    cellTimers.removeAll()
-    //}
     
     @IBAction func unwindToRoot(segue: UIStoryboardSegue) {
         // nothing to do
@@ -113,14 +105,13 @@ extension ContactListViewController {
     override func tableView(tableView: (UITableView!), cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let contact = contacts[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath) as! ContactCell
-        if let cellTimer = cell.configureForContact(contact) {
-            self.cellTimers.append(cellTimer)
-            cell.selectionStyle = .Default
-            cell.accessoryType = .DisclosureIndicator
-        } else {
-            cell.selectionStyle = .None
-            cell.accessoryType = .None
+        // Weiterlaufen verhindern
+        if let timerOldCell = cell.timer {
+            timerOldCell.invalidate()
         }
+        cell.configureForContact(contact)
+        cell.selectionStyle = .Default
+        cell.accessoryType = .DisclosureIndicator
         
         return cell
         

@@ -107,14 +107,18 @@
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Seconds" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vU3-Nd-n5t">
                                             <rect key="frame" x="478" y="11" width="67" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="100" id="hfh-YP-YVc"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.41522823952879584" green="0.41522823952879584" blue="0.41522823952879584" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="vU3-Nd-n5t" secondAttribute="trailing" constant="20" id="6q4-VH-1jo"/>
                                         <constraint firstItem="0tO-Sz-Fi2" firstAttribute="centerY" secondItem="t2A-7L-o8e" secondAttribute="centerY" id="C8d-CJ-1qg"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="vU3-Nd-n5t" secondAttribute="trailing" constant="10" id="Jhr-9G-pHf"/>
+                                        <constraint firstItem="vU3-Nd-n5t" firstAttribute="leading" secondItem="0tO-Sz-Fi2" secondAttribute="trailing" constant="20" id="RX9-7I-rEH"/>
                                         <constraint firstItem="vU3-Nd-n5t" firstAttribute="centerY" secondItem="t2A-7L-o8e" secondAttribute="centerY" id="Znx-Ks-ZXh"/>
                                         <constraint firstItem="0tO-Sz-Fi2" firstAttribute="leading" secondItem="t2A-7L-o8e" secondAttribute="leadingMargin" constant="15" id="kZH-KM-jt5"/>
                                     </constraints>

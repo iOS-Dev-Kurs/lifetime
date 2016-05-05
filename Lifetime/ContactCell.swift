@@ -16,22 +16,23 @@ class ContactCell: UITableViewCell {
     @IBOutlet weak var labelSeconds: UILabel!
     
     var totalTime: Int = 0
+    var timer: NSTimer?
     
     func updateSeconds() {
         self.totalTime += 1
         labelSeconds.text = String(self.totalTime) + "s"
     }
     
-    func configureForContact(contact: CNContact) -> NSTimer? {
+    func configureForContact(contact: CNContact) {
         labelName.text = contact.givenName + " " + contact.familyName
         if let timeSinceBirthday = contact.lifetimeInSeconds {
             totalTime = timeSinceBirthday
-            let cellTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ContactCell.updateSeconds), userInfo: nil, repeats: true)
-            return cellTimer
+            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ContactCell.updateSeconds), userInfo: nil, repeats: true)
         }
         else {
             labelSeconds.text = ""
-            return nil
+            totalTime = 0
+            timer = nil
         }
     }
 }
