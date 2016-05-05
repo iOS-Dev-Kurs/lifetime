@@ -25,6 +25,7 @@ class ContactListViewController: UITableViewController {
     private var contacts: [CNContact] = [] {
         didSet {
             tableView.reloadData()
+            print(contacts.count)
         }
     }
 
@@ -60,6 +61,7 @@ class ContactListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "ContactCell")
         tableView.tableHeaderView = searchController.searchBar
     }
 
@@ -68,12 +70,21 @@ class ContactListViewController: UITableViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier! {
+            case "showInText":
+            guard let indexPath = (self.view as! UITableView).indexPathForSelectedRow else { return }
+            segue.destinationViewController.title = contacts[indexPath.row].givenName + " " + contacts[indexPath.row].familyName
+            (segue.destinationViewController as! ContactDetailViewController).contact = contacts[indexPath.row]
+            break
 
-        // TODO: prepare segue.destinationViewController for each identifier
             
         default:
             break
         }
+    }
+    
+    
+    @IBAction func unwindToRoot(segue: UIStoryboardSegue) {
+        // nothing to do
     }
     
 }
@@ -82,6 +93,30 @@ class ContactListViewController: UITableViewController {
 // MARK: - Table View Datasource
 
 // TODO: implement UITableViewDatasource protocol
+extension ContactListViewController {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return contacts.count
+    }
+    
+    
+    override func tableView(tableView: (UITableView!), cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let contact = contacts[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath) as! ContactCell
+        // Weiterlaufen verhindern
+        if let timerOldCell = cell.timer {
+            timerOldCell.invalidate()
+        }
+        cell.configureForContact(contact)
+        cell.selectionStyle = .Default
+        cell.accessoryType = .DisclosureIndicator
+        
+        return cell
+        
+    }
+}
 
 
 // MARK: - Search Results Updating

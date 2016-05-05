@@ -71,7 +71,7 @@ class ContactDetailViewController: UIViewController {
             lifetimeFormatter.unitsStyle = .SpellOut
             lifetimeLabel.text = lifetimeFormatter.stringFromDate(birthday, toDate: NSDate())
         } else {
-            lifetimeLabel.text = nil
+            lifetimeLabel.text = "Sorry, this Birthday is not set 😞"
         }
     }
 

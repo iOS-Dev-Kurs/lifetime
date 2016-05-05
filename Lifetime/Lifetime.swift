@@ -22,4 +22,11 @@ extension CNContact {
         return NSDate().timeIntervalSinceDate(birthday)
     }
     
+    var lifetimeInSeconds: Int? {
+        guard let birthdate = self.birthday, birthdayAsNSObject = NSCalendar.currentCalendar().dateFromComponents(birthdate) else {
+            return nil
+        }
+        let totalTime = NSDate().timeIntervalSinceDate(birthdayAsNSObject)
+        return Int(totalTime)
+    }
 }
