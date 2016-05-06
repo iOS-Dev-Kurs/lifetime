@@ -65,13 +65,17 @@ class ContactDetailViewController: UIViewController {
     }
     
     private func updateLifetimeDisplay() {
-        if let birthdayComponents = contact?.birthday, birthday = NSCalendar.currentCalendar().dateFromComponents(birthdayComponents) {
+        if let birthdayComponents = contact?.birthday, birthday = NSCalendar.currentCalendar().dateFromComponents(birthdayComponents) where birthdayComponents.year != 9223372036854775807 {
             let lifetimeFormatter = NSDateComponentsFormatter()
             lifetimeFormatter.allowedUnits = NSCalendarUnit.Day.union(.Hour).union(.Minute).union(.Second)
             lifetimeFormatter.unitsStyle = .SpellOut
             lifetimeLabel.text = lifetimeFormatter.stringFromDate(birthday, toDate: NSDate())
+        } else if let birthdayComponents = contact?.birthday where birthdayComponents.year == 9223372036854775807 {
+            let lifetimeFormatter = NSDateFormatter()
+            let months = lifetimeFormatter.monthSymbols
+            lifetimeLabel.text = "unknown, but the birthday is on \(months[(birthdayComponents.month)-1]) \(birthdayComponents.day)"
         } else {
-            lifetimeLabel.text = nil
+            lifetimeLabel.text = "unknown"
         }
     }
 
