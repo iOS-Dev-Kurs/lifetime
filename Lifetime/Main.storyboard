@@ -102,6 +102,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="JEX-9P-axG" kind="show" identifier="showContactDetail" id="eHA-7U-YAa"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
