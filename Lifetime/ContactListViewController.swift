@@ -68,8 +68,11 @@ class ContactListViewController: UITableViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier! {
-
-        // TODO: prepare segue.destinationViewController for each identifier
+        case "showContactDetail":
+            guard let indexPath = self.tableView.indexPathForSelectedRow else { break }
+            let contact = contacts[indexPath.row]
+            let contactDetailViewController = segue.destinationViewController as! ContactDetailViewController
+            contactDetailViewController.contact = contact
             
         default:
             break
@@ -121,6 +124,9 @@ extension ContactListViewController {
         }
         return cell
     }
+    
+    
+
 }
 
 
