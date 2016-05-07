@@ -75,6 +75,39 @@ class ContactListViewController: UITableViewController {
             break
         }
     }
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return contacts.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("LifetimeCell", forIndexPath: indexPath) as! LifetimeCell
+        let contact = contacts[indexPath.row]
+        cell.configureForContact(contact)
+        if contact.lifetime != nil {
+            cell.selectionStyle = .Default
+            cell.accessoryType = .DisclosureIndicator
+        } else {
+            cell.selectionStyle = .None
+            cell.accessoryType = .None
+        }
+        return cell
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        switch segue.identifier! {
+        case "showContactDetail":
+            guard let indexPath = self.tableView.indexPathForSelectedRow else { break}
+            let contact = contacts[indexPath.row]
+            let contactDetailViewController = segue.destinationViewController as! ContactDetailViewController
+            contactDetailViewController.contact = contact
+        default:
+            break
+        }
+    }
+
     
 }
 
@@ -95,24 +128,26 @@ extension ContactListViewController: UISearchResultsUpdating {
             loadContacts(filteredBy: nil)
         }
     }
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
     }
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contacts.count
-    }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("LifetimeCell", forIndexPath: indexPath) as! LifetimeCell
-        let contact = contacts[indexPath.row]
-        cell.configureForContact(contact)
-        if contact.lifetime != nil {
-                cell.selectionStyle = .Default
-                cell.accessoryType = .DisclosureIndicator
-        } else {
-                cell.selectionStyle = .None
-                cell.accessoryType = .None
-        }
-        return cell }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
