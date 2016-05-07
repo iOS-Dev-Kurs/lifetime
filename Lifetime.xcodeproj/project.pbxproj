@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8307F28C1CDC7B8E007711F1 /* LifetimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8307F28B1CDC7B8E007711F1 /* LifetimeCell.swift */; };
 		870312411CD4EDBC00A48B90 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8703123F1CD4EDBC00A48B90 /* LaunchScreen.storyboard */; };
 		870312421CD4EDBC00A48B90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 870312401CD4EDBC00A48B90 /* Main.storyboard */; };
 		871045011CD4ED800091710A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871044F21CD4ED800091710A /* AppDelegate.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8307F28B1CDC7B8E007711F1 /* LifetimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LifetimeCell.swift; path = Lifetime/LifetimeCell.swift; sourceTree = SOURCE_ROOT; };
 		8703123F1CD4EDBC00A48B90 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Lifetime/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		870312401CD4EDBC00A48B90 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Lifetime/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		871044D91CD3C9860091710A /* Lifetime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lifetime.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +71,7 @@
 		870312481CD4EECD00A48B90 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8307F28B1CDC7B8E007711F1 /* LifetimeCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 				8710450A1CD4ED800091710A /* Lifetime.swift in Sources */,
 				871045071CD4ED800091710A /* ContactDetailViewController.swift in Sources */,
 				871045011CD4ED800091710A /* AppDelegate.swift in Sources */,
+				8307F28C1CDC7B8E007711F1 /* LifetimeCell.swift in Sources */,
 				871045081CD4ED800091710A /* ContactListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,7 +280,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Lifetime/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-heidelberg.ios-dev-kurs.Life";
+				PRODUCT_BUNDLE_IDENTIFIER = ChrisBtt;
 				PRODUCT_NAME = Lifetime;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -289,7 +293,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Lifetime/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-heidelberg.ios-dev-kurs.Life";
+				PRODUCT_BUNDLE_IDENTIFIER = ChrisBtt;
 				PRODUCT_NAME = Lifetime;
 			};
 			name = Release;
