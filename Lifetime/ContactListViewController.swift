@@ -97,3 +97,39 @@ extension ContactListViewController: UISearchResultsUpdating {
     }
     
 }
+
+extension ContactListViewController {
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+ 
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) ->Int{
+        return contacts.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("LifetimeCell", forIndexPath: indexPath) as! LifetimeCell
+        let contact = contacts[indexPath.row]
+        cell.configureForContact(contact)
+        if contact.lifetime != nil {
+            cell.selectionStyle = .Default
+            cell.accessoryType = .DisclosureIndicator
+        } else {
+            cell.selectionStyle = .None
+            cell.accessoryType = .None
+        }
+        return cell
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
