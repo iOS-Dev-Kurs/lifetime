@@ -74,6 +74,5 @@ class ContactDetailViewController: UIViewController {
             lifetimeLabel.text = nil
         }
     }
-
 }
 
