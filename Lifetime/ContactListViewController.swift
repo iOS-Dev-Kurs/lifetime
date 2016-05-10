@@ -81,8 +81,39 @@ class ContactListViewController: UITableViewController {
 
 // MARK: - Table View Datasource
 
-// TODO: implement UITableViewDatasource protocol
+// TODO: implement UITableViewDatasource protocol -done 
 
+extension ContactListViewController {
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1 // zeigt kontakte zunächst in einer einzelnen Section an
+    
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return contacts.count // jeder kontankt soll eine neue zeile bekommen
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        //View komponente: Frage die TableView nach einer wiederverwendbaren Zelle
+        let cell = tableView.dequeueReusableCellWithIdentifier("LifetimeCell", forIndexPath: indexPath) as! LifetimeCell
+        
+        // MODEL-Komponente: Bestimme den Kontakt für diese  → Zeile
+        
+        let contact = contacts[indexPath.row]
+        cell.configureForContact(contact)
+        if contact.lifetime != nil {
+            cell.selectionStyle = .Default
+            cell.accessoryType = .DisclosureIndicator
+        }
+        else {
+            cell.selectionStyle = .None
+            cell.accessoryType = .None
+        }
+        return cell
+    }
+}
 
 // MARK: - Search Results Updating
 
