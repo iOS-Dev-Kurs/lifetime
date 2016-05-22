@@ -66,22 +66,62 @@ class ContactListViewController: UITableViewController {
     
     // MARK: User Interaction
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
         switch segue.identifier! {
-
-        // TODO: prepare segue.destinationViewController for each identifier
-            
+        case "showContactDetail":
+            guard let indexPath = self.tableView.indexPathForSelectedRow else{
+                break}
+            let contact = contacts[indexPath.row]
+            let contactDetailViewController = segue.destinationViewController as! ContactDetailViewController; contactDetailViewController.contact = contact
         default:
             break
         }
     }
     
+    override func shouldPerformSegueWithIdentifier(string: String, sender: AnyObject?) -> Bool {
+        switch string {
+            case "showContactDetail":
+                guard let indexPath = self.tableView.indexPathForSelectedRow else{
+                    break}
+                let contact = contacts[indexPath.row]
+                return contact.lifetime != nil
+        default:
+            break
+        }
+        return false
+    }
 }
 
 
 // MARK: - Table View Datasource
 
 // TODO: implement UITableViewDatasource protocol
+extension ContactListViewController {
+    override func numberOfSectionsInTableView(tableView:UITableView)->Int{
+        return 1 // Wir zeigen die Kontakte zunächst in einer  → einzelnenSectionan
+    }
+    
+    override func tableView(tableView: UITableView,numberOfRowsInSection numberOfRowsInSectionsection:Int)->Int{
+        return contacts.count // Für jeden Kontakt soll eine
+    }
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath:NSIndexPath)-> UITableViewCell{
+                                // VIEW-Komponente: Frage die Table View nach einer  → wiederverwendbarenZelle
+
+    let cell = tableView.dequeueReusableCellWithIdentifier("LifetimeCell",forIndexPath:indexPath) as! LifetimeCell
+    // MODEL-Komponente: Bestimme den Kontakt für diese  → Zeile
+    let contact = contacts[indexPath.row]
+        // CONTROLLER-Komponente: Konfiguriere die Zelle nach
+    cell.configureForContact(contact)
+    if contact.lifetime != nil {
+            cell.selectionStyle = .Default
+            cell.accessoryType = .DisclosureIndicator
+    } else {
+            cell.selectionStyle = .None
+            cell.accessoryType = .None
+    }
+    return cell
+    }
+}
 
 
 // MARK: - Search Results Updating
