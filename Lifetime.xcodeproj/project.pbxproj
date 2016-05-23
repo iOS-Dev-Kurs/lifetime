@@ -14,6 +14,7 @@
 		871045071CD4ED800091710A /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871044FD1CD4ED800091710A /* ContactDetailViewController.swift */; };
 		871045081CD4ED800091710A /* ContactListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871044FE1CD4ED800091710A /* ContactListViewController.swift */; };
 		8710450A1CD4ED800091710A /* Lifetime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871045001CD4ED800091710A /* Lifetime.swift */; };
+		E9D6ADD31CF334C900BF4D71 /* LifetimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D6ADD21CF334C900BF4D71 /* LifetimeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		871044FE1CD4ED800091710A /* ContactListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactListViewController.swift; path = Lifetime/ContactListViewController.swift; sourceTree = SOURCE_ROOT; };
 		871044FF1CD4ED800091710A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Lifetime/Info.plist; sourceTree = SOURCE_ROOT; };
 		871045001CD4ED800091710A /* Lifetime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Lifetime.swift; path = Lifetime/Lifetime.swift; sourceTree = SOURCE_ROOT; };
+		E9D6ADD21CF334C900BF4D71 /* LifetimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifetimeCell.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 		870312481CD4EECD00A48B90 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E9D6ADD21CF334C900BF4D71 /* LifetimeCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 				8710450A1CD4ED800091710A /* Lifetime.swift in Sources */,
 				871045071CD4ED800091710A /* ContactDetailViewController.swift in Sources */,
 				871045011CD4ED800091710A /* AppDelegate.swift in Sources */,
+				E9D6ADD31CF334C900BF4D71 /* LifetimeCell.swift in Sources */,
 				871045081CD4ED800091710A /* ContactListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
