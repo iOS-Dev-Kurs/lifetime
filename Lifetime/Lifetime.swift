@@ -12,14 +12,14 @@ import Contacts
 
 extension CNContact {
     
-    @nonobjc static let requiredKeysForLifetime: [CNKeyDescriptor] = [ CNContactBirthdayKey ]
+    @nonobjc static let requiredKeysForLifetime: [CNKeyDescriptor] = [ CNContactBirthdayKey as CNKeyDescriptor ]
     
-    var lifetime: NSTimeInterval? {
+    var lifetime: TimeInterval? {
         guard let birthdayComponents = self.birthday,
-            birthday = NSCalendar.currentCalendar().dateFromComponents(birthdayComponents) else {
+            let birthday = Calendar.current.date(from: birthdayComponents) else {
                 return nil
         }
-        return NSDate().timeIntervalSinceDate(birthday)
+        return Date().timeIntervalSince(birthday)
     }
     
 }

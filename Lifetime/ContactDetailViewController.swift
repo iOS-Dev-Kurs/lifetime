@@ -32,22 +32,22 @@ class ContactDetailViewController: UIViewController {
         self.configureView()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateTimerFired(_:)), userInfo: nil, repeats: true)
+        updateTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimerFired(_:)), userInfo: nil, repeats: true)
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         updateTimer?.invalidate()
         updateTimer = nil
     }
 
-    private func configureView() {
-        guard isViewLoaded() else { return }
-        if let contact = self.contact, fullName = CNContactFormatter.stringFromContact(contact, style: .FullName) {
+    fileprivate func configureView() {
+        guard isViewLoaded else { return }
+        if let contact = self.contact, let fullName = CNContactFormatter.string(from: contact, style: .fullName) {
             self.title = fullName
-            lifetimeTitleLabel.text = "\(contact.givenName ?? fullName)'s total lifetime is"
+            lifetimeTitleLabel.text = "\(contact.givenName)'s total lifetime is"
         } else {
             self.title = nil
             lifetimeTitleLabel.text = nil
@@ -58,18 +58,18 @@ class ContactDetailViewController: UIViewController {
 
     // MARK: Updates
     
-    private var updateTimer: NSTimer?
+    private var updateTimer: Timer?
     
-    @objc private func updateTimerFired(timer: NSTimer) {
+    @objc private func updateTimerFired(_ timer: Timer) {
         updateLifetimeDisplay()
     }
     
     private func updateLifetimeDisplay() {
-        if let birthdayComponents = contact?.birthday, birthday = NSCalendar.currentCalendar().dateFromComponents(birthdayComponents) {
-            let lifetimeFormatter = NSDateComponentsFormatter()
-            lifetimeFormatter.allowedUnits = NSCalendarUnit.Day.union(.Hour).union(.Minute).union(.Second)
-            lifetimeFormatter.unitsStyle = .SpellOut
-            lifetimeLabel.text = lifetimeFormatter.stringFromDate(birthday, toDate: NSDate())
+        if let birthdayComponents = contact?.birthday, let birthday = Calendar.current.date(from: birthdayComponents) {
+            let lifetimeFormatter = DateComponentsFormatter()
+            lifetimeFormatter.allowedUnits = NSCalendar.Unit.day.union(.hour).union(.minute).union(.second)
+            lifetimeFormatter.unitsStyle = .spellOut
+            lifetimeLabel.text = lifetimeFormatter.string(from: birthday, to: Date())
         } else {
             lifetimeLabel.text = nil
         }

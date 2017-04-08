@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     var window: UIWindow?
 
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // find root view controller
         let contactListViewController = (window!.rootViewController as! UINavigationController).topViewController as! ContactListViewController
@@ -24,18 +24,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let contactStore = CNContactStore()
         
         // request authorization to access contacts if necessary, then pass on the contact store
-        switch CNContactStore.authorizationStatusForEntityType(.Contacts) {
-        case .Authorized:
+        switch CNContactStore.authorizationStatus(for: .contacts) {
+        case .authorized:
             contactListViewController.contactStore = contactStore
-        case .NotDetermined:
-            contactStore.requestAccessForEntityType(.Contacts) { success, error in
+        case .notDetermined:
+            contactStore.requestAccess(for: .contacts) { success, error in
                 if success {
                     contactListViewController.contactStore = contactStore
                 } else {
-                    print(error)
+                    print(error!)
                 }
             }
-        case .Denied, .Restricted:
+        case .denied, .restricted:
             break
         }
         

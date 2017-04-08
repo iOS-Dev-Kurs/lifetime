@@ -22,24 +22,24 @@ class ContactListViewController: UITableViewController {
     
     // MARK: Contact Loading
     
-    private var contacts: [CNContact] = [] {
+    fileprivate var contacts: [CNContact] = [] {
         didSet {
             tableView.reloadData()
         }
     }
 
-    private let requiredContactKeysToFetch = [ CNContactFormatter.descriptorForRequiredKeysForStyle(.FullName) ] + CNContact.requiredKeysForLifetime
+    private let requiredContactKeysToFetch = [ CNContactFormatter.descriptorForRequiredKeys(for: .fullName) ] + CNContact.requiredKeysForLifetime
 
-    private func loadContacts(filteredBy searchTerm: String? = nil) {
+    fileprivate func loadContacts(filteredBy searchTerm: String? = nil) {
         guard let contactStore = contactStore else {
             contacts = []
             return
         }
-        if let searchTerm = searchTerm where !searchTerm.isEmpty {
-            contacts = (try? contactStore.unifiedContactsMatchingPredicate(CNContact.predicateForContactsMatchingName(searchTerm), keysToFetch: self.requiredContactKeysToFetch)) ?? []
+        if let searchTerm = searchTerm, !searchTerm.isEmpty {
+            contacts = (try? contactStore.unifiedContacts(matching: CNContact.predicateForContacts(matchingName: searchTerm), keysToFetch: self.requiredContactKeysToFetch)) ?? []
         } else {
-            let containers = (try? contactStore.containersMatchingPredicate(nil)) ?? []
-            contacts = containers.map({ CNContact.predicateForContactsInContainerWithIdentifier($0.identifier) }).flatMap({ (try? contactStore.unifiedContactsMatchingPredicate($0, keysToFetch: self.requiredContactKeysToFetch)) ?? [] })
+            let containers = (try? contactStore.containers(matching: nil)) ?? []
+            contacts = containers.map({ CNContact.predicateForContactsInContainer(withIdentifier: $0.identifier) }).flatMap({ (try? contactStore.unifiedContacts(matching: $0, keysToFetch: self.requiredContactKeysToFetch)) ?? [] })
         }
     }
     
@@ -66,7 +66,7 @@ class ContactListViewController: UITableViewController {
     
     // MARK: User Interaction
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier! {
 
         // TODO: prepare segue.destinationViewController for each identifier
@@ -88,8 +88,8 @@ class ContactListViewController: UITableViewController {
 
 extension ContactListViewController: UISearchResultsUpdating {
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        if let searchTerm = searchController.searchBar.text where !searchTerm.isEmpty {
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchTerm = searchController.searchBar.text, !searchTerm.isEmpty {
             loadContacts(filteredBy: searchTerm)
         } else {
             loadContacts(filteredBy: nil)
